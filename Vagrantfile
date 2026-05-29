@@ -17,8 +17,9 @@ Vagrant.configure("2") do |config|
 	
 		# 포트 포워딩 Host 8080 -> Guest 80
 		master.vm.network "forwarded_port",
-			guest: 80,
-			host: 8080
+			guest: 22,
+			host: 2222,
+			id: "ssh"
 		# 사설 네트워크 ip 번호 부여
 		master.vm.network "private_network",
 			ip: "192.168.77.30"
@@ -43,8 +44,9 @@ Vagrant.configure("2") do |config|
 	
 		# 포트 포워딩 Host 8081 -> Guest 81
 		worker.vm.network "forwarded_port",
-			guest: 81,
-			host: 8081
+			guest: 22,
+			host: 2223,
+			id: "ssh"
 		# 사설 네트워크 ip 번호 부여
 		worker.vm.network "private_network",
 			ip: "192.168.77.31"
@@ -52,8 +54,8 @@ Vagrant.configure("2") do |config|
 		# vmware의 전용 옵션
 		# vm의 memory, cpu 설정
 		worker.vm.provider "vmware_desktop" do |v|
-			v.vmx["memsize"] = "6144"
-			v.vmx["numvcpus"] = "4"
+			v.vmx["memsize"] = "3072"
+			v.vmx["numvcpus"] = "2"
 		end
 		
 		# shell 스크립트 실행
