@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
 			v.vmx["memsize"] = "6144"
 			v.vmx["numvcpus"] = "4"
 		end
-		
+		s
 		# shell 스크립트 실행
 		config.vm.provision "shell",
 			inline: "echo hello master"
@@ -54,8 +54,8 @@ Vagrant.configure("2") do |config|
 		# vmware의 전용 옵션
 		# vm의 memory, cpu 설정
 		worker.vm.provider "vmware_desktop" do |v|
-			v.vmx["memsize"] = "3072"
-			v.vmx["numvcpus"] = "2"
+			v.vmx["memsize"] = "6144"
+			v.vmx["numvcpus"] = "4"
 		end
 		
 		# shell 스크립트 실행
