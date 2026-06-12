@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
 			v.vmx["memsize"] = "6144"
 			v.vmx["numvcpus"] = "4"
 		end
-		s
+		
 		# shell 스크립트 실행
 		config.vm.provision "shell",
 			inline: "echo hello master"
