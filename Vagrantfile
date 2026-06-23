@@ -8,6 +8,10 @@ Vagrant.configure("2") do |config|
 	
 	# VMware shared folder 문제 예방용
 	config.vm.synced_folder ".", "/vagrant", disabled: true
+
+	config.vm.provider "vmware_desktop" do |v|
+  		v.linked_clone = false
+	end
 	
 	# master node 지정
 	config.vm.define "master" do |master|
@@ -54,12 +58,39 @@ Vagrant.configure("2") do |config|
 		# vmware의 전용 옵션
 		# vm의 memory, cpu 설정
 		worker.vm.provider "vmware_desktop" do |v|
-			v.vmx["memsize"] = "6144"
-			v.vmx["numvcpus"] = "4"
+			v.vmx["memsize"] = "3072"
+			v.vmx["numvcpus"] = "2"
 		end
 		
 		# shell 스크립트 실행
 		config.vm.provision "shell",
 			inline: "echo hello worker1"
+	end
+
+	# worker node 지정
+	config.vm.define "worker2" do |worker|
+		
+		# vm의 host 이름
+		worker.vm.hostname = "k8s-worker2-khw"
+	
+		# 포트 포워딩 Host 8081 -> Guest 81
+		worker.vm.network "forwarded_port",
+			guest: 22,
+			host: 2224,
+			id: "ssh"
+		# 사설 네트워크 ip 번호 부여
+		worker.vm.network "private_network",
+			ip: "192.168.77.32"
+	
+		# vmware의 전용 옵션
+		# vm의 memory, cpu 설정
+		worker.vm.provider "vmware_desktop" do |v|
+			v.vmx["memsize"] = "3072"
+			v.vmx["numvcpus"] = "2"
+		end
+		
+		# shell 스크립트 실행
+		config.vm.provision "shell",
+			inline: "echo hello worker2"
 	end
 end
