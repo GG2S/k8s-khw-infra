@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
 		# 포트 포워딩 Host 8080 -> Guest 80
 		master.vm.network "forwarded_port",
 			guest: 22,
-			host: 2223,
+			host: 2222,
 			id: "ssh"
 		# 사설 네트워크 ip 번호 부여
 		master.vm.network "private_network",
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
 		# 포트 포워딩 Host 8081 -> Guest 81
 		worker.vm.network "forwarded_port",
 			guest: 22,
-			host: 2224,
+			host: 2223,
 			id: "ssh"
 		# 사설 네트워크 ip 번호 부여
 		worker.vm.network "private_network",
@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
 		# 포트 포워딩 Host 8081 -> Guest 81
 		worker.vm.network "forwarded_port",
 			guest: 22,
-			host: 2225,
+			host: 2224,
 			id: "ssh"
 		# 사설 네트워크 ip 번호 부여
 		worker.vm.network "private_network",
