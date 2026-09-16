@@ -23,7 +23,8 @@ Vagrant.configure("2") do |config|
 		master.vm.network "forwarded_port",
 			guest: 22,
 			host: 2222,
-			id: "ssh"
+			id: "ssh",
+			auto_correct: true
 		# 사설 네트워크 ip 번호 부여
 		master.vm.network "private_network",
 			ip: "192.168.77.30"
@@ -50,7 +51,8 @@ Vagrant.configure("2") do |config|
 		worker.vm.network "forwarded_port",
 			guest: 22,
 			host: 2223,
-			id: "ssh"
+			id: "ssh",
+			auto_correct: true
 		# 사설 네트워크 ip 번호 부여
 		worker.vm.network "private_network",
 			ip: "192.168.77.31"
@@ -77,7 +79,8 @@ Vagrant.configure("2") do |config|
 		worker.vm.network "forwarded_port",
 			guest: 22,
 			host: 2224,
-			id: "ssh"
+			id: "ssh",
+			auto_correct: true
 		# 사설 네트워크 ip 번호 부여
 		worker.vm.network "private_network",
 			ip: "192.168.77.32"
